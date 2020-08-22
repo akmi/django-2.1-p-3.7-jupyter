@@ -5,12 +5,9 @@ EXPOSE 8888
 ARG workspace="none"
 
 RUN apt-get update \
-    && apt-get install --assume-yes wget bash-completion unzip
+    && apt-get install --assume-yes wget bash-completion unzip git curl
 
 # Install Jupyter Workspace for Python
-
-RUN apt-get update \
-    && apt-get install --assume-yes git curl unzip
 
 RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/pre-build.sh
 RUN chmod 775 ./pre-build.sh
@@ -33,6 +30,6 @@ WORKDIR /var/app/
 
 
 # Run the app
-RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/run.sh
-RUN chmod 775 ./run.sh
-CMD bash run.sh
+RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/run-3.sh
+RUN chmod 775 ./run-3.sh
+CMD bash run-3.sh
