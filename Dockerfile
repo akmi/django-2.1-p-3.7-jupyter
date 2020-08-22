@@ -7,28 +7,32 @@ ARG workspace="none"
 RUN apt-get update \
     && apt-get install --assume-yes wget bash-completion unzip
 
-# Install Jupyter Workspace for Python 
+# Install Jupyter Workspace for Python
+
+RUN apt-get update \
+    && apt-get install --assume-yes git curl unzip
 
 RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/pre-build.sh
-RUN chmod 775 ./pre-build.sh 
+RUN chmod 775 ./pre-build.sh
 RUN sh pre-build.sh
 
-# End Install for Workspace  
+WORKDIR /var/
 
-WORKDIR /var/app
+RUN git clone https://github.com/devjudge/django-2.1-p-3.6-in-docker-2 app
 
-ADD . .
+WORKDIR /var/app/
 
-# Add Tini. Tini operates as a process subreaper for jupyter. This prevents kernel crashes.
-ENV TINI_VERSION v0.6.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
-RUN chmod +x /usr/bin/tini
-ENTRYPOINT ["/usr/bin/tini", "--"]
+# ADD TINI. TINI OPERATES AS A PROCESS SUBREAPER FOR JUPYTER. THIS PREVENTS KERNEL CRASHES.
+ENV TINI_VERSION V0.6.0
+ADD HTTPS://GITHUB.COM/KRALLIN/TINI/RELEASES/DOWNLOAD/${TINI_VERSION}/TINI /USR/BIN/TINI
+RUN CHMOD +X /USR/BIN/TINI
+ENTRYPOINT ["/USR/BIN/TINI", "--"]
 
-CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+
+
 
 
 # Run the app
 #RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/run.sh
-#RUN chmod 775 ./run.sh
-#CMD sh run.sh
+RUN chmod 775 ./run.sh
+CMD sh run.sh
