@@ -22,6 +22,7 @@ RUN chmod 775 ./run.sh
 # RUN sh download-repo.sh
 
 
+RUN mkdir -p /var/app
 WORKDIR /var/app/
 
 # ADD TINI. TINI OPERATES AS A PROCESS SUBREAPER FOR JUPYTER. THIS PREVENTS KERNEL CRASHES.
