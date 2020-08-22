@@ -13,12 +13,13 @@ RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/ju
 RUN chmod 775 ./pre-build.sh
 RUN sh pre-build.sh
 
-WORKDIR /var/
+RUN mkdir -p /var/jupyter/
+WORKDIR /var/jupyter/
 
 
-RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/download-repo.sh
-RUN chmod 775 ./download-repo.sh
-RUN sh download-repo.sh
+RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/run.sh
+RUN chmod 775 ./run.sh
+# RUN sh download-repo.sh
 
 
 WORKDIR /var/app/
