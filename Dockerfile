@@ -15,7 +15,11 @@ RUN sh pre-build.sh
 
 WORKDIR /var/
 
-RUN git clone $GIT_URL app
+
+RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/jupyter/download-repo.sh
+RUN chmod 775 ./download-repo.sh
+RUN sh download-repo.sh
+
 
 WORKDIR /var/app/
 
