@@ -15,7 +15,7 @@ RUN sh pre-build.sh
 
 WORKDIR /var/
 
-RUN git clone https://github.com/devjudge/django-2.1-p-3.6-in-docker-2 app
+RUN git clone $GIT_URL app
 
 WORKDIR /var/app/
 
